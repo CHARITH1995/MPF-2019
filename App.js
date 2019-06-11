@@ -8,8 +8,8 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-import AppContainer from './AppNavigation/AppNavigation';
-import SplashScreen from 'react-native-splash-screen';
+import AppContainer from './AppNavigation/AppNavigation'
+import SplashScreen from 'react-native-splash-screen'
 
 const axios = require('axios');
 
