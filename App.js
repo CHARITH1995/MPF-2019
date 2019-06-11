@@ -9,7 +9,6 @@ const instructions = Platform.select({
 });
 
 import AppContainer from './AppNavigation/AppNavigation'
-import Test from '../partnershipForum/src/pages/GalleryPage';
 import SplashScreen from 'react-native-splash-screen'
 
 const axios = require('axios');
