@@ -47,8 +47,8 @@ export default class LoginPage extends Component {
     }
     handleLogin = () => {
         axios.post('https://mpf.gov.mv/wp-json/jwt-auth/v1/token', {
-            "username": this.state.username,
-            "password": this.state.password
+            "username":'mpfguest',
+            "password":'mpf2019maldives'
         }).then(response => {
             if (response.data.token) {
                 localStorage.saveItem('token',response.data.token);

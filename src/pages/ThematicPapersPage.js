@@ -45,7 +45,8 @@ export default class ThematicPapersPage extends Component {
                 <ScrollView style={{ paddingTop: 10, paddingLeft: 10, paddingRight: 10, marginBottom: cardHeight / 3 }}>
                     {
                         this.state.papers.map((item) =>
-                            <View key={item.id} style={styles.item}>
+                        JSON.stringify(item.caption.rendered).match("<p>THEMATIC</p>") != null ? (
+                                <View key={item.id} style={styles.item}>
                                  <View style={{flex:1 , flexDirection: 'row' }}>
                                     <View style={{ padding: 15, backgroundColor: '#1A5961' }}>
                                         <Image source={pdf} style={styles.image} resizeMode="contain" />
@@ -60,6 +61,13 @@ export default class ThematicPapersPage extends Component {
                                     </View>
                                 </View>
                             </View>
+                            ):(
+                                <View>
+                                    {
+                                        console.log("here")
+                                    }
+                                </View>
+                            )
                         )
                     }
                     {/* </ScrollView> */}

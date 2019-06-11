@@ -41,25 +41,29 @@ export default class PublicationsPage extends Component {
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column' }}>
-                <Header title="Downloads and Publications" />
+                <HeaderDrawer title="Downloads and Publications" />
                 <ScrollView style={{ paddingTop: 10, paddingLeft: 10, paddingRight: 10, marginBottom: cardHeight / 3 }}>
                     {
                         this.state.papers.map((item) =>
+                        JSON.stringify(item.caption.rendered).match("<p>PUBLICATION</p>") != null ? (
                             <View key={item.id} style={styles.item}>
-                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                    <View style={{ padding: 15, backgroundColor: '#1A5961' }}>
-                                        <Image source={pdf} style={styles.image} resizeMode="contain" />
-                                    </View>
-                                    <Text style={{ marginLeft: 10, alignSelf: 'center', fontWeight: 'bold' }}>{item.slug}</Text>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ padding: 15, backgroundColor: '#1A5961' }}>
+                                    <Image source={pdf} style={styles.image} resizeMode="contain" />
                                 </View>
-                                <View style={{ alignSelf: 'flex-end', flexDirection: 'row-reverse' }}>
-                                    <View>
-                                        <TouchableOpacity onPress={() => Linking.openURL(item.source_url)} >
-                                            <Text style={{ fontWeight: '100' }}>View More</Text>
-                                        </TouchableOpacity>
-                                    </View>
+                                <Text style={{ marginLeft: 10, alignSelf: 'center', fontWeight: 'bold' }}>{item.slug}</Text>
+                            </View>
+                            <View style={{ alignSelf: 'flex-end', flexDirection: 'row-reverse' }}>
+                                <View>
+                                    <TouchableOpacity onPress={() => Linking.openURL(item.source_url)} >
+                                        <Text style={{ fontWeight: '100' }}>View More</Text>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
+                        </View>
+                        ):(
+                            <View></View>
+                        )
                         )
                     }
                     {/* </ScrollView> */}

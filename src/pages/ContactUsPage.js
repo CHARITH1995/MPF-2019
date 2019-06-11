@@ -13,7 +13,7 @@ export default class ContactUsPage extends Component {
         this.state = {
             name: "",
             address: "",
-            TO:''
+            TO:'mpf2019@foreign.gov.mv'
         }
     }
 
@@ -72,10 +72,6 @@ export default class ContactUsPage extends Component {
                                     <Item floatingLabel last >
                                         <Label>Name</Label>
                                         <Input style={styles.inputCover} value={this.state.name} onChangeText={(name) => this.setState({ name })} />
-                                    </Item>
-                                    <Item floatingLabel last >
-                                        <Label>Email</Label>
-                                        <Input style={styles.inputCover} value={this.state.email} onChangeText={(email) => this.setState({ email })} />
                                     </Item>
                                     <Textarea  style = {styles.input4} bordered placeholder="Message" />
                                 </Form>

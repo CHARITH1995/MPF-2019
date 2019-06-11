@@ -13,7 +13,7 @@ export default class QuestionPage extends Component {
           selected2: undefined,
           body:'',
           subject:'',
-          To:""
+          To:"mpf2019@foreign.gov.mv"
         };
       }
 
@@ -36,7 +36,7 @@ export default class QuestionPage extends Component {
           )
         });
         this.setState({
-            selected2: undefined,
+            selected2: '',
           body:'',
           subject:'',
         })
@@ -70,7 +70,7 @@ export default class QuestionPage extends Component {
                         <View style = {styles.FormContain}>
                             <Form>
                             <Item inlineLabel last  style = {styles.input1}>
-                                <Label style = {{ fontSize : 15.5 }}>To</Label>
+                                <Label style = {{ fontSize : 15.5 }}>{this.state.To}</Label>
                                 <Input value={this.state.To}/>
                             </Item>
                             <Item picker>
@@ -97,7 +97,7 @@ export default class QuestionPage extends Component {
                     </View>
                     <View style = {styles.BtnCover}>
                         <View style = {{ flex : 1, justifyContent : 'center', }}>
-                            <Button buttonStyle = {styles.leftBtn} title="Back" />
+                            <Button buttonStyle = {styles.leftBtn} title="Back" onPress={()=>this.props.navigation.navigate('Home')}/>
                         </View>
                         <View style = {{ flex : 1, justifyContent : 'center', }}>
                         <Button buttonStyle = {styles.RightBtn} title="Next" onPress={this.handleEmail}/>

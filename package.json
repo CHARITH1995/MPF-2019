@@ -30,6 +30,7 @@
     "react-navigation": "^3.11.0",
     "react-navigation-drawer": "^1.2.1",
     "rn-fetch-blob": "^0.10.15",
+    "striptags": "^3.1.1",
     "watchman": "^1.0.0"
   },
   "devDependencies": {
