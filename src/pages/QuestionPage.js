@@ -20,7 +20,7 @@ export default class QuestionPage extends Component {
 
       handleEmail = () => {
         Mailer.mail({
-          subject: 'need help',
+          subject:this.state.subject,
           recipients: [this.state.To],
           body: `${this.state.body} sector is ${this.state.selected2}`,
           isHTML: true,
@@ -70,7 +70,7 @@ export default class QuestionPage extends Component {
                         <View style = {styles.FormContain}>
                             <Form>
                             <Item inlineLabel last  style = {styles.input1}>
-                                <Label style = {{ fontSize : 15.5 }}>{this.state.To}</Label>
+                                <Label style = {{ fontSize : 15.5 }}>To</Label>
                                 <Input value={this.state.To}/>
                             </Item>
                             <Item picker>

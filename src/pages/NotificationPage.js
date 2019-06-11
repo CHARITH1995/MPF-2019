@@ -29,6 +29,7 @@ export default class NotificationPage extends Component {
         id: 0,
         name: '',
       }],
+      names: [],
       showAlert: false,
       notify: ''
     };
@@ -41,6 +42,131 @@ export default class NotificationPage extends Component {
       .catch(function (error) {
         console.log(error)
       });
+    var today = new Date();
+    var startDate0 = new Date("06/11/2019 19:50:00");
+    var startDate1 = new Date("06/16/2019 19:50:00");
+    var startDate2 = new Date("06/17/2019 08:50:00");
+    var startDate3 = new Date("06/17/2019 09:20:00");
+    var startDate4 = new Date("06/17/2019 10:05:00");
+    var startDate5 = new Date("06/17/2019 11:05:00");
+    var startDate6 = new Date("06/17/2019 12:50:00");
+    var startDate7 = new Date("06/17/2019 14:20:00");
+    var startDate8 = new Date("06/17/2019 19:50:00");
+    var startDate9 = new Date("06/18/2019 08:50:00");
+    var startDate10 = new Date("06/18/2019 10:35:00");
+    var startDate11 = new Date("06/18/2019 11:05:00");
+    var startDate12 = new Date("06/18/2019 12:35:00");
+    var startDate13 = new Date("06/18/2019 14:20:00");
+    console.log("today: " + today + " day1 " + startDate0);
+    if (Number(startDate0) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Welcome Reception co-hosted", id: 1, valid: true }]
+      });
+
+    }
+    if (Number(startDate1) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Welcome Reception co-hosted", id: 1, valid: true }]
+      });
+
+    }
+    if (Number(startDate2) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }]
+      });
+
+    }
+    if (Number(startDate3) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true }]
+      });
+
+    }
+    if (Number(startDate4) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true },
+        { name: "Plenary Session 1", id: 4, valid: true }]
+      });
+
+    }
+    if (Number(startDate5) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true },
+        { name: "Plenary Session 1", id: 4, valid: true },
+        { name: "Plenary Session 2", id: 5, valid: true }]
+      });
+
+    }
+    if (Number(startDate6) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true },
+        { name: "Plenary Session 1", id: 4, valid: true },
+        { name: "Plenary Session 2", id: 5, valid: true },
+        { name: "Lunch", id: 6, valid: true }]
+      });
+
+    }
+    if (Number(startDate7) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true },
+        { name: "Plenary Session 1", id: 4, valid: true },
+        { name: "Plenary Session 2", id: 5, valid: true },
+        { name: "Lunch", id: 6, valid: true },
+        { name: "Enhancing Social Outcome", id: 7, valid: true }]
+      });
+
+    }
+    if (Number(startDate8) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Opening Session", id: 2, valid: true }, { name: "Tea/Coffee break", id: 3, valid: true },
+        { name: "Plenary Session 1", id: 4, valid: true },
+        { name: "Plenary Session 2", id: 5, valid: true },
+        { name: "Lunch", id: 6, valid: true },
+        { name: "Enhancing Social Outcome", id: 7, valid: true },
+        { name: "Official dinner", id: 8, valid: true }]
+      });
+
+    }
+    if (Number(startDate9) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Plenary Session 4", id: 1, valid: true }]
+      });
+
+    }
+    if (Number(startDate10) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Plenary Session 4", id: 1, valid: true },
+        { name: "Tea/Coffee break", id: 2, valid: true }]
+      });
+
+    }
+    if (Number(startDate11) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Plenary Session 4", id: 1, valid: true },
+        { name: "Tea/Coffee break", id: 2, valid: true },
+        { name: "Plenary Session 5", id: 3, valid: true }]
+      });
+
+    }
+    if (Number(startDate12) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Plenary Session 4", id: 1, valid: true },
+        { name: "Tea/Coffee break", id: 2, valid: true },
+        { name: "Plenary Session 5", id: 3, valid: true },
+        { name: "Lunch ", id: 4, valid: true }]
+      });
+
+    }
+    if (Number(startDate13) < Number(today)) {
+      this.setState({
+        names: [...this.state.names, { name: "Plenary Session 4", id: 1, valid: true },
+        { name: "Tea/Coffee break", id: 2, valid: true },
+        { name: "Plenary Session 5", id: 3, valid: true },
+        { name: "Lunch ", id: 4, valid: true },
+        { name: "Concluding session", id: 5, valid: true }]
+      });
+
+    }
   }
   showAlert = notify => {
     this.setState({
@@ -78,18 +204,50 @@ export default class NotificationPage extends Component {
             {
               this.state.papers.map((item, index) => (
                 <TouchableOpacity onPress={this.showAlert.bind(this, striptags(item.content.rendered))}>
-                <View key={item.id} style={styles.item}>
-                    <View style={{ flex:1 , flexDirection: "row" }}>
+                  <View key={item.id} style={styles.item}>
+                    <View style={{ flex: 1, flexDirection: "row" }}>
                       <View>
                         <Icon
                           style={{ color: '#1A5961', alignSelf: 'center', marginLeft: 15 }}
                           name="md-alert" size={35} />
                       </View>
-                      <View style={{justifyContent:'center' , alignSelf:'center' , paddingLeft:'5%'}}><Text style={{textAlign:'center',fontWeight:'300',fontSize:20}}>{item.title.rendered}</Text></View>
+                      <View style={{ justifyContent: 'center', alignSelf: 'center', paddingLeft: '5%' }}><Text style={{ textAlign: 'center', fontWeight: '300', fontSize: 20 }}>{item.title.rendered}</Text></View>
                     </View>
+                  </View>
+                </TouchableOpacity>
+              ))
+            }
+            {this.state.names.map((item, index) => (
+              <TouchableOpacity onPress={this.showAlert.bind(this, striptags(item.name))}>
+              <View key={item.id} style={styles.item}>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ padding: 15 }}>
+                    <Icon
+                      style={{ color: '#1A5961', alignSelf: 'center' }}
+                      name="md-alert" size={35} />
+                  </View>
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      alignSelf: "center",
+                      fontWeight: "300",
+                      fontSize: 20
+                    }}
+                  >
+                    {item.name}
+                  </Text>
                 </View>
-                  </TouchableOpacity>
-              ))}
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: "flex-end",
+                    flexDirection: "row-reverse"
+                  }}
+                >
+                </View>
+              </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
       </View>
