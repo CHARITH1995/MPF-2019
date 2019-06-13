@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { StyleSheet, Text, View, Image, Button, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import { Container, Header, Content, Form, Item, Input, Label, Icon } from 'native-base';
 import Toast, { DURATION } from 'react-native-easy-toast'
-import localStorage from '../../services/localStorage'
+import AsyncStorage from '@react-native-community/async-storage';
 import Hamburger from '../../assets/ham.png'
 import LoginButton from '../components/LoginButton';
 import Alert from '../components/alert';
@@ -29,30 +29,21 @@ export default class LoginPage extends Component {
 
     }
 
-    // showAlert = () => {
-    //     this.setState({
-    //         showAlert: true,
-    //     });
-    // };
 
-    // hideAlert = () => {
-    //     this.setState({
-    //         showAlert: false,
-    //         message:''
-    //     });
-    // };
-
-    componentDidMount() {
+    componentDidMount=()=> {
         SplashScreen.hide();
+        this._retrieveData();
     }
+
     handleLogin = () => {
         axios.post('https://mpf.gov.mv/wp-json/jwt-auth/v1/token', {
-            "username":'mpfguest',
-            "password":'mpf2019maldives'
+            "username":this.state.username,
+            "password":this.state.password
+            // "username":"mpfguest",
+            // "password":"mpf2019maldives"
         }).then(response => {
             if (response.data.token) {
-                localStorage.saveItem('token',response.data.token);
-                this.route();
+                this._storeData(response.data.token);
                 this.setState({
                     username:'',
                     password:'',
@@ -66,26 +57,32 @@ export default class LoginPage extends Component {
                 message:' Error!! '
             })
         });
-        //this.showAlert();
     }
 
-    route = () => {
-        this.props.navigation.navigate('Home');
-    }
+    _retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('token');
+          if (value !== null) {
+            this.props.navigation.navigate('Home');
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      };
+
+    _storeData = async (data) => {
+        try {
+          await AsyncStorage.setItem('token',data);
+          this.props.navigation.navigate('Home');
+        } catch (error) {
+          console.log("error")
+        }
+      };
 
 
     render() {
-        if(localStorage.loadJWT.value !=null){
-            return(
-                this.props.navigate.navigation('Home')
-            )
-        }else{
             return(
                 <View style={styles.LPContainer}>
-                {/* <Alert show ={this.state.showAlert}
-                msg ={this.state.message}
-                hide = {this.hideAlert}
-                /> */}
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.LPheaderContainer} >
                         <View style={styles.LPhmbrgrCover}>
@@ -104,12 +101,12 @@ export default class LoginPage extends Component {
                                 </Item>
                                 <Item floatingLabel last >
                                     <Label>Password</Label>
-                                    <Input style={styles.inputCover} secureTextEntry={true} onChangeText={(password) => this.setState({ password })} />
+                                    <Input style={styles.inputCover} value={this.state.password} secureTextEntry={true} onChangeText={(password) => this.setState({ password })} />
                                 </Item>
                             </Form>
                             <View style={styles.loginBtnCover}>
                                 <TouchableOpacity style={styles.SPTO}
-                                    onPress={() => this.props.navigation.navigate('Home')}>
+                                    onPress={this.handleLogin}>
                                     <LoginButton buttonText={"Login"} />
                                 </TouchableOpacity>
                                 <Toast ref="toast"
@@ -129,7 +126,6 @@ export default class LoginPage extends Component {
             )
         }
     }
-}
 let dimensions = Dimensions.get("window");
 let cardHeight = Math.round((dimensions.height * 1) / 15);
 

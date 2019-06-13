@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const localStorage = {
 
-    async saveItem(key, value){
+    async saveItem = (key, value)=>{
 
         try{
             await AsyncStorage.setItem(key, value);
@@ -12,7 +12,7 @@ const localStorage = {
 
     },
 
-    async loadJWT() {
+    async loadJWT = () =>{
         try{
             const value = await AsyncStorage.getItem('jwt_token');
             if(value !== null){
@@ -32,7 +32,7 @@ const localStorage = {
         }
     },
 
-    async deleteJWT(){
+    async deleteJWT = () =>{
         try{
             await AsyncStorage.removeItem('jwt_token')
             .then(

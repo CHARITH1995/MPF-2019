@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Image,Platform } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label, Icon } from 'native-base';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import AsyncStorage from '@react-native-community/async-storage';
 import LoginButton from '../components/LoginButton';
 import tabImg1 from '../../assets/logouticon.png';
 import CancelButton from '../components/CancelButton';
@@ -10,6 +11,20 @@ import HeaderDrawer from '../components/HeaderDrawer'
 const text = "Are you sure want to Logout ?";
 
 export default class LogoutPage extends Component {
+    constructor(props){
+        super(props);
+
+    }
+    Logout = async () => {
+        try {
+          const value = await AsyncStorage.removeItem('token');
+          if (value === null) {
+            this.props.navigation.navigate('Login');
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      };
     render() {
         return (
             <View>
@@ -28,7 +43,7 @@ export default class LogoutPage extends Component {
                 </View>
                 <View style={styles.SendMsgBtnCover}>
                     <TouchableOpacity style={styles.SPTO}
-                        onPress={()=>this.props.navigation.navigate('Login')}>
+                        onPress={()=>this.Logout()}>
                         <LoginButton buttonText={"Logout"} />
                     </TouchableOpacity>
                     <Toast ref="toast"
