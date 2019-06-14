@@ -20,11 +20,13 @@ export default class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: null,
-            password: null,
+            username: '',
+            password: '',
             message: '',
             jwt: '',
             showAlert: '',
+            usernameValidate : false,
+            pwValidate : false
         }
 
     }
@@ -36,27 +38,41 @@ export default class LoginPage extends Component {
     }
 
     handleLogin = () => {
-        axios.post('https://mpf.gov.mv/wp-json/jwt-auth/v1/token', {
-            "username":this.state.username,
-            "password":this.state.password
-            // "username":"mpfguest",
-            // "password":"mpf2019maldives"
-        }).then(response => {
-            if (response.data.token) {
-                this._storeData(response.data.token);
-                this.setState({
-                    username:'',
-                    password:'',
-                    message:'successfully logged In'
-                })
+        if(this.state.username.length == 0 && this.state.password.length == 0){
+            this.setState({usernameValidate : true,pwValidate : true})
+        }else{
+            if(this.state.username.length == 0){
+                this.setState({usernameValidate : true})
+            }else if(this.state.password.length == 0){
+                this.setState({pwValidate : true})
+            }else{
+                this.setState({usernameValidate : false,pwValidate : false})
+                axios.post('https://mpf.gov.mv/wp-json/jwt-auth/v1/token', {
+                "username":this.state.username,
+                "password":this.state.password
+                // "username":"mpfguest",
+                // "password":"mpf2019maldives"
+                }).then(response => {
+                    if (response.data.token) {
+                        this._storeData(response.data.token);
+                        this.setState({
+                            username:'',
+                            password:'',
+                            message:'successfully logged In'
+                        })
+                        this.refs.toast.show('Login Succeed');
+                    }
+                }).catch(err => {
+                    this.setState({
+                        username:'',
+                        password:'',
+                        message:' Error!! '
+                    })
+                    this.refs.toast.show('Login Failed');
+                });
+    
             }
-        }).catch(err => {
-            this.setState({
-                username:'',
-                password:'',
-                message:' Error!! '
-            })
-        });
+        }
     }
 
     _retrieveData = async () => {
@@ -89,6 +105,11 @@ export default class LoginPage extends Component {
                         </View>
                         <View style={styles.LPTopTextCover}>
                             <Text style={styles.LPheader}>Welcome</Text>
+                            <Toast ref="toast"
+                                    style={{ backgroundColor: 'white', }}
+                                    position='top'
+                                    opacity={0.8}
+                                    textStyle={{ color: '#1A5961', fontSize: 15,fontWeight : 'bold' }} />
                         </View>
                     </View>
                     <View style={styles.LPcardContainer} >
@@ -97,23 +118,20 @@ export default class LoginPage extends Component {
                             <Form>
                                 <Item floatingLabel last >
                                     <Label>Username</Label>
-                                    <Input style={styles.inputCover} value={this.state.username} onChangeText={(username) => this.setState({ username })} />
+                                    <Input style={styles.inputCover} value={this.state.username} onChangeText={(username) => this.setState({ username, usernameValidate : false })} />
                                 </Item>
+                                {this.state.usernameValidate ? (<Text style = {{ fontSize : 11, color : 'red' }}>The username field can not be empty</Text>) : (<Text></Text>)}
                                 <Item floatingLabel last >
                                     <Label>Password</Label>
-                                    <Input style={styles.inputCover} value={this.state.password} secureTextEntry={true} onChangeText={(password) => this.setState({ password })} />
+                                    <Input style={styles.inputCover} value={this.state.password} secureTextEntry={true} onChangeText={(password) => this.setState({ password, pwValidate : false })} />
                                 </Item>
+                                {this.state.pwValidate ? (<Text style = {{ fontSize : 11, color : 'red' }}>The password field can not be empty</Text>) : (<Text></Text>)}
                             </Form>
                             <View style={styles.loginBtnCover}>
                                 <TouchableOpacity style={styles.SPTO}
                                     onPress={this.handleLogin}>
                                     <LoginButton buttonText={"Login"} />
                                 </TouchableOpacity>
-                                <Toast ref="toast"
-                                    style={{ backgroundColor: '#1d1438' }}
-                                    position='top'
-                                    opacity={0.8}
-                                    textStyle={{ color: 'white', fontSize: 15, }} />
                             </View>
                             <View style={styles.LoginLinkCover}>
                                 <Text style={styles.linkNorm}>Forgot Password ? <Text style={styles.linkHL}>Reset</Text></Text>

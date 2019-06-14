@@ -349,7 +349,6 @@ const instructions = Platform.select({
 });
 
 import AppContainer from './AppNavigation/AppNavigation'
-import Test from '../partnershipForum/src/pages/GalleryPage';
 
 const axios = require('axios');
 
