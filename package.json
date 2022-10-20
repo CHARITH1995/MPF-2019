@@ -24,7 +24,7 @@
     "react-native-mail": "^3.0.7",
     "react-native-pdf": "^5.1.0",
     "react-native-popup-dialog": "^0.18.2",
-    "react-native-reanimated": "^1.0.1",
+    "react-native-reanimated": "^2.10.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-tab-view": "^2.5.0",
     "react-native-vector-icons": "^6.4.2",
